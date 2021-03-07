@@ -1,0 +1,34 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <div class="input-group col-6 w-25">
+    <input type="text" class="form-control" placeholder="Search by Title" #myInput [(ngModel)]="titre" (input)="Search()"/>
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button" (click)="Search()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+
+<div class="container py-5">
+  <h1 class="display-4">Online Meetings App by Mariem DERBALI</h1>
+  <div class="row mt-5">
+   <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let meet of mymeetings; let i= index">
+    <div class="card h-100" style="width: 18rem;">
+      <div *ngFor="let photo of meet.photos; let first= first ">
+        <img [src]="photo" *ngIf="first" class="card-img-top">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{meet.titre}}</h5>
+        <p class="card-text">Lieu: {{meet.lieu}}</p>
+        <p [ngStyle]="{color: getJoinValue(i)}">
+          <span *ngIf="meet.join">Terminé!</span>
+          <span *ngIf="!meet.join">En cours</span>
+        </p>
+        <div class="text-center">
+          <button class="btn btn-primary" type="button" [routerLink]="['/meet',i]">Voir ce réunion</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
